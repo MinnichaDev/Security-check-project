@@ -1,0 +1,19 @@
+name: Security Scan
+
+on: [push]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run security scan
+      run: |
+        pip install safety
+        safety check
